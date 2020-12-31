@@ -137,7 +137,7 @@ public class Entry1: Entry {
                     throw Database1.FormatError.prematureDataEnd
                 }
                 guard let iconID = IconID(rawValue: iconIDraw) else {
-                    throw Database1.FormatError.corruptedField(fieldName: "Entry/IconID")
+                    throw Database1.FormatError.corruptedField(fieldName: "Entry/IconID (\(iconIDraw))")
                 }
                 self.iconID = iconID
             case .title:
