@@ -71,7 +71,7 @@ public class EntryField: Eraseable {
 }
 
 public class Entry: DatabaseItem, Eraseable {
-    public static let defaultIconID = IconID.key
+    public static let defaultIconID = IconID.standard(.key)
     
     public weak var database: Database?
     public var uuid: UUID

@@ -250,7 +250,7 @@ public class Group2: Group {
         xmlGroup.addChild(name: Xml2.uuid, value: uuid.base64EncodedString())
         xmlGroup.addChild(name: Xml2.name, value: name)
         xmlGroup.addChild(name: Xml2.notes, value: notes)
-        xmlGroup.addChild(name: Xml2.iconID, value: String(iconID.rawValue))
+        xmlGroup.addChild(name: Xml2.iconID, value: String(iconID.databaseRawValue))
         if customIconUUID != UUID.ZERO {
             xmlGroup.addChild(
                 name: Xml2.customIconUUID,

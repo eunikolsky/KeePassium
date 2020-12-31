@@ -26,7 +26,7 @@ public class Group1: Group {
     }
     
     public static let backupGroupName = "Backup" 
-    public static let backupGroupIconID = IconID.trashBin
+    public static let backupGroupIconID = IconID.standard(.trashBin)
     
     private(set)  var id: Group1ID
     internal var level: Int16
@@ -212,11 +212,10 @@ public class Group1: Group {
                 }
                 self.expiryTime = date
             case .iconID:
-                guard let iconIDraw = stream.readUInt32(),
-                    let _iconID = IconID(rawValue: iconIDraw) else {
+                guard let iconIDraw = stream.readUInt32() else {
                         throw Database1.FormatError.corruptedField(fieldName: "Group/IconID")
                 }
-                self.iconID = _iconID
+                self.iconID = IconID(rawValue: iconIDraw)
             case .groupLevel:
                 guard let _level = stream.readUInt16() else {
                     throw Database1.FormatError.corruptedField(fieldName: "Group/Level")
@@ -261,7 +260,7 @@ public class Group1: Group {
         writeField(fieldID: .lastModifiedTime, data: self.lastModificationTime.asKP1Bytes())
         writeField(fieldID: .lastAccessTime, data: self.lastAccessTime.asKP1Bytes())
         writeField(fieldID: .expirationTime, data: self.expiryTime.asKP1Bytes())
-        writeField(fieldID: .iconID, data: self.iconID.rawValue.data)
+        writeField(fieldID: .iconID, data: self.iconID.databaseRawValue.data)
         writeField(fieldID: .groupLevel, data: UInt16(self.level).data)
         writeField(fieldID: .groupFlags, data: self.flags.data)
         writeField(fieldID: .end, data: ByteArray())

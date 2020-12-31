@@ -136,10 +136,7 @@ public class Entry1: Entry {
                 guard let iconIDraw = stream.readUInt32() else {
                     throw Database1.FormatError.prematureDataEnd
                 }
-                guard let iconID = IconID(rawValue: iconIDraw) else {
-                    throw Database1.FormatError.corruptedField(fieldName: "Entry/IconID (\(iconIDraw))")
-                }
-                self.iconID = iconID
+                self.iconID = IconID(rawValue: iconIDraw)
             case .title:
                 guard let data = stream.read(count: fieldSize) else {
                     throw Database1.FormatError.prematureDataEnd
@@ -264,7 +261,7 @@ public class Entry1: Entry {
         }
         writeField(fieldID: .uuid, data: uuid.data)
         writeField(fieldID: .groupID, data: groupID.data)
-        writeField(fieldID: .iconID, data: iconID.rawValue.data)
+        writeField(fieldID: .iconID, data: iconID.databaseRawValue.data)
         writeField(fieldID: .title, data: ByteArray(utf8String: title), addTrailingZero: true)
         writeField(fieldID: .url, data: ByteArray(utf8String: url), addTrailingZero: true)
         writeField(fieldID: .username, data: ByteArray(utf8String: userName), addTrailingZero: true)

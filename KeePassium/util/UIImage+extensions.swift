@@ -61,7 +61,7 @@ extension UIImage {
     }
     
     static func kpIcon(forID iconID: IconID) -> UIImage? {
-        return UIImage(named: String(format: "db-icons/kpbIcon%02d", iconID.rawValue))
+        return UIImage(named: String(format: "db-icons/kpbIcon%02d", iconID.imageRawValue))
     }
     
     static func kpIcon(forEntry entry: Entry) -> UIImage? {

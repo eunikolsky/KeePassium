@@ -325,7 +325,7 @@ final class Meta2: Eraseable {
             bundle: Bundle.framework,
             value: "Recycle Bin",
             comment: "Name of a group which contains deleted entries")
-        backupGroup.iconID = IconID.trashBin
+        backupGroup.iconID = IconID.standard(.trashBin)
         backupGroup.isDeleted = true
         backupGroup.isAutoTypeEnabled = false
         backupGroup.isSearchingEnabled = false

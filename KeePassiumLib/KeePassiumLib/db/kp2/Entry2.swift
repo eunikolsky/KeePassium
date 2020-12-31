@@ -381,7 +381,7 @@ public class Entry2: Entry {
             case Xml2.uuid:
                 self.uuid = UUID(base64Encoded: tag.value) ?? UUID.ZERO
             case Xml2.iconID:
-                self.iconID = IconID(tag.value) ?? IconID.key
+                self.iconID = IconID(tag.value) ?? IconID.standard(.key)
             case Xml2.customIconUUID:
                 self.customIconUUID = UUID(base64Encoded: tag.value) ?? UUID.ZERO
             case Xml2.foregroundColor:
@@ -540,7 +540,7 @@ public class Entry2: Entry {
         
         let xmlEntry = AEXMLElement(name: Xml2.entry)
         xmlEntry.addChild(name: Xml2.uuid, value: uuid.base64EncodedString())
-        xmlEntry.addChild(name: Xml2.iconID, value: String(iconID.rawValue))
+        xmlEntry.addChild(name: Xml2.iconID, value: String(iconID.databaseRawValue))
         if customIconUUID != UUID.ZERO {
             xmlEntry.addChild(
                 name: Xml2.customIconUUID,

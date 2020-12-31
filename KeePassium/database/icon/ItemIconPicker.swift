@@ -68,7 +68,7 @@ class ItemIconPicker: UICollectionViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if let selectedIconID = selectedIconID {
-            let selIndexPath = IndexPath(row: Int(selectedIconID.rawValue), section: 0)
+            let selIndexPath = IndexPath(row: Int(selectedIconID.imageRawValue), section: 0)
             collectionView.selectItem(
                 at: selIndexPath, animated: true,
                 scrollPosition: .centeredVertically)
@@ -89,7 +89,7 @@ class ItemIconPicker: UICollectionViewController {
         _ collectionView: UICollectionView,
         numberOfItemsInSection section: Int) -> Int
     {
-        return IconID.all.count
+        return IconID.StandardIcon.all.count
     }
 
     override func collectionView(
@@ -102,13 +102,15 @@ class ItemIconPicker: UICollectionViewController {
             for: indexPath)
             as! ItemIconPickerCell
         DispatchQueue.global(qos: .userInitiated).async {
-            if let kpIcon = UIImage.kpIcon(forID: IconID.all[indexPath.row]) {
+            if let kpIcon = UIImage.kpIcon(forID: IconID.standard(IconID.StandardIcon.all[indexPath.row])) {
                 DispatchQueue.main.async {
                     cell.imageView.image = kpIcon
                 }
             }
         }
-        if let selectedRow = selectedIconID?.rawValue, selectedRow == indexPath.row {
+        // note: using `databaseRawValue` here in order not to highlight the default key icon in the picker even though
+        // it's displayed for an entry with a non-standard icon ID — this mimics KeePassX's behavior
+        if let selectedRow = selectedIconID?.databaseRawValue, selectedRow == indexPath.row {
             cell.isHighlighted = true
         } else {
             cell.isHighlighted = false
@@ -120,8 +122,8 @@ class ItemIconPicker: UICollectionViewController {
         _ collectionView: UICollectionView,
         didSelectItemAt indexPath: IndexPath)
     {
-        if indexPath.row < IconID.all.count {
-            let selectedIconID = IconID.all[indexPath.row]
+        if indexPath.row < IconID.StandardIcon.all.count {
+            let selectedIconID = IconID.standard(IconID.StandardIcon.all[indexPath.row])
             delegate?.didSelectIcon(iconID: selectedIconID, in: self)
         }
     }

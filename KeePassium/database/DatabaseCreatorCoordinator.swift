@@ -97,14 +97,14 @@ class DatabaseCreatorCoordinator: NSObject {
     
     private func addTemplateItems(to rootGroup: Group2) {
         let groupGeneral = rootGroup.createGroup()
-        groupGeneral.iconID = .folder
+        groupGeneral.iconID = .standard(.folder)
         groupGeneral.name = NSLocalizedString(
             "[Database/Create/TemplateGroup/title] General",
             value: "General",
             comment: "Predefined group in a new database")
         
         let groupInternet = rootGroup.createGroup()
-        groupInternet.iconID = .globe
+        groupInternet.iconID = .standard(.globe)
         groupInternet.name = NSLocalizedString(
             "[Database/Create/TemplateGroup/title] Internet",
             value: "Internet",
@@ -112,7 +112,7 @@ class DatabaseCreatorCoordinator: NSObject {
 
 
         let groupEmail = rootGroup.createGroup()
-        groupEmail.iconID = .envelopeOpen
+        groupEmail.iconID = .standard(.envelopeOpen)
         groupEmail.name = NSLocalizedString(
             "[Database/Create/TemplateGroup/title] Email",
             value: "Email",
@@ -120,7 +120,7 @@ class DatabaseCreatorCoordinator: NSObject {
 
 
         let groupHomebanking = rootGroup.createGroup()
-        groupHomebanking.iconID = .currency
+        groupHomebanking.iconID = .standard(.currency)
         groupHomebanking.name = NSLocalizedString(
             "[Database/Create/TemplateGroup/title] Finance",
             value: "Finance",
@@ -128,7 +128,7 @@ class DatabaseCreatorCoordinator: NSObject {
 
         
         let groupNetwork = rootGroup.createGroup()
-        groupNetwork.iconID = .server
+        groupNetwork.iconID = .standard(.server)
         groupNetwork.name = NSLocalizedString(
             "[Database/Create/TemplateGroup/title] Network",
             value: "Network",
@@ -136,14 +136,14 @@ class DatabaseCreatorCoordinator: NSObject {
 
 
         let groupLinux = rootGroup.createGroup()
-        groupLinux.iconID = .apple
+        groupLinux.iconID = .standard(.apple)
         groupLinux.name = NSLocalizedString(
             "[Database/Create/TemplateGroup/title] OS",
             value: "OS",
             comment: "Predefined `Operating system` group in a new database")
         
         let sampleEntry = rootGroup.createEntry()
-        sampleEntry.iconID = .key
+        sampleEntry.iconID = .standard(.key)
         sampleEntry.title = NSLocalizedString(
             "[Database/Create/TemplateEntry/title] Sample Entry",
             value: "Sample Entry",
